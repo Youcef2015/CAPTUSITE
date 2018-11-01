@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+  web:
+    network_mode: "bridge"
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
+    volumes:
+      - ./back/bin:/var/www/html/back/bin
+      - ./back/config:/var/www/html/back/config
+      - ./back/public:/var/www/html/back/public
+      - ./back/data:/var/www/html/back/data
+      - ./back/src:/var/www/html/back/src
+      - ./back/templates:/var/www/html/back/templates
+      - ./back/.env:/var/www/html/back/.env
+      - ./back/.env.dist:/var/www/html/back/.env.dist
+      - ./back/composer.json:/var/www/html/back/composer.json
+      - ./back/composer.lock:/var/www/html/back/composer.lock
+      - ./back/composer.phar:/var/www/html/back/composer.phar
+      - ./back/symfony.lock:/var/www/html/back/symfony.lock
+        
+    environment:
+      APP_ENV: dev
+      SYMFONY_ENV: dev
+      DATABASE_HOST: 'db'
+      DATABASE_PORT: '3306'
+      DATABASE_NAME: 'state-location'
+      DATABASE_USER: 'state-location'
+      DATABASE_PWD: 'root-location'
+      DB_USER: 'state-location'
+      DB_PASSWORD: 'root-location'
+      DB_ENDPOINT: 'db'
+      DB_PORT: '3306'
+      DB_NAME: 'state-location'
+      CORS_ALLOW_ORIGIN: 'http://localhost:4200'
+  db:
+    network_mode: "bridge"
+    image: mysql:5.7.17
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root-location
+      MYSQL_DATABASE: state-location
+      MYSQL_USER: state-location
+      MYSQL_PASSWORD: root-location

@@ -59,15 +59,7 @@ COPY docker/apache2.conf /etc/apache2/apache2.conf
 # Copy source for Dockerized app
 
 COPY /back /var/www/html/back
-COPY /front /var/www/html/front
 # Exec
-
-#COPY docker/docker-entrypoint.sh /usr/local/bin/
-
-WORKDIR /var/www/html/front
-RUN npm install
-RUN npm run build
-WORKDIR /var/www/html/back
 
 #RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 #ENTRYPOINT ["docker-entrypoint.sh"]

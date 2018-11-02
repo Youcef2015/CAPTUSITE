@@ -25,21 +25,21 @@ services:
       SYMFONY_ENV: dev
       DATABASE_HOST: 'db'
       DATABASE_PORT: '3306'
-      DATABASE_NAME: 'state-location'
-      DATABASE_USER: 'state-location'
-      DATABASE_PWD: 'root-location'
-      DB_USER: 'state-location'
-      DB_PASSWORD: 'root-location'
+      DATABASE_NAME: 'formation'
+      DATABASE_USER: 'root'
+      DATABASE_PWD: 'root'
+      DB_USER: 'root'
+      DB_PASSWORD: 'root'
       DB_ENDPOINT: 'db'
       DB_PORT: '3306'
-      DB_NAME: 'state-location'
+      DB_NAME: 'formation'
       CORS_ALLOW_ORIGIN: 'http://localhost:4200'
   db:
     network_mode: "bridge"
     image: mysql:5.7.17
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root-location
-      MYSQL_DATABASE: state-location
-      MYSQL_USER: state-location
-      MYSQL_PASSWORD: root-location
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: formation
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root

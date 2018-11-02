@@ -14,6 +14,14 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash \
 # Install PHP PDO
 RUN docker-php-ext-install pdo pdo_mysql
 
+# Composer
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/bin/ --filename=composer
+WORKDIR /app
+COPY . ./
+RUN composer install --no-dev --no-interaction -o
+
 # Apache Conf
 
 COPY docker/dev/default.conf /etc/apache2/sites-available/000-default.conf
@@ -31,12 +39,6 @@ COPY docker/apache2.conf /etc/apache2/apache2.conf
 # Copy source for Dockerized app
 
 COPY /back /var/www/html/back
-COPY /front /var/www/html/front
-# Exec
-
-#COPY docker/docker-entrypoint.sh /usr/local/bin/
-
-WORKDIR /var/www/html/front
 
 WORKDIR /var/www/html/back
 #RUN chmod +x /usr/local/bin/docker-entrypoint.sh

@@ -6,8 +6,7 @@ services:
       file: docker-compose-common.yml
       service: web
     ports:
-      - "10000:80"
-      - "10005:8089"
+      - "20000:80"
     links:
       - "db:db"
   db:
@@ -17,4 +16,4 @@ services:
     volumes:
       - "./.data/db:/var/lib/mysql"
     ports:
-      - '10001:3306'
+      - '20001:3306'
